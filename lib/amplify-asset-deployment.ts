@@ -81,7 +81,7 @@ class AmplifyAssetDeploymentProvider extends CoreConstruct {
           "amplify-asset-deployment-handler/index.ts"
         ),
         runtime: lambda.Runtime.NODEJS_14_X,
-        handler: "index.onEvent",
+        handler: "onEvent",
         initialPolicy: [
           new iam.PolicyStatement({
             resources: ["*"],
@@ -105,7 +105,7 @@ class AmplifyAssetDeploymentProvider extends CoreConstruct {
           "amplify-asset-deployment-handler/index.ts"
         ),
         runtime: lambda.Runtime.NODEJS_14_X,
-        handler: "index.isComplete",
+        handler: "isComplete",
         initialPolicy: [
           new iam.PolicyStatement({
             resources: ["*"],
