@@ -3,8 +3,7 @@ import * as iam from "@aws-cdk/aws-iam";
 import * as lambda from "@aws-cdk/aws-lambda";
 import { NodejsFunction } from "@aws-cdk/aws-lambda-nodejs";
 import { CustomResource, Duration, Stack } from "@aws-cdk/core";
-import { Construct, Node } from "constructs";
-import { Construct as CoreConstruct } from "@aws-cdk/core";
+import { Construct } from "@aws-cdk/core";
 import { IBranch, IApp } from "@aws-cdk/aws-amplify";
 import { Provider } from "@aws-cdk/custom-resources";
 
@@ -30,7 +29,7 @@ export interface AmplifyAssetDeploymentProps {
   readonly s3ObjectKey: string;
 }
 
-export class AmplifyAssetDeployment extends CoreConstruct {
+export class AmplifyAssetDeployment extends Construct {
   constructor(
     scope: Construct,
     id: string,
@@ -51,7 +50,7 @@ export class AmplifyAssetDeployment extends CoreConstruct {
   }
 }
 
-class AmplifyAssetDeploymentProvider extends CoreConstruct {
+class AmplifyAssetDeploymentProvider extends Construct {
   /**
    * Returns the singleton provider.
    */
@@ -60,9 +59,7 @@ class AmplifyAssetDeploymentProvider extends CoreConstruct {
       "com.samkio.cdk.custom-resources.amplify-asset-deployment-provider";
     const stack = Stack.of(scope);
     const group =
-      (Node.of(stack).tryFindChild(
-        providerId
-      ) as AmplifyAssetDeploymentProvider) ||
+      (stack.node.tryFindChild(providerId) as AmplifyAssetDeploymentProvider) ||
       new AmplifyAssetDeploymentProvider(stack, providerId);
     return group.provider.serviceToken;
   }

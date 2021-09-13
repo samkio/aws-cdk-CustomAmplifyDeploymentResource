@@ -4,13 +4,16 @@
   "bin": {
     "amplify_cdk": "bin/amplify_cdk.js"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "test": "jest",
     "watch": "tsc -w",
     "cdk": "cdk"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "1.121.0",
+    "@aws-cdk/assert": "^1.122.0",
     "@types/aws-lambda": "^8.10.83",
     "@types/jest": "^26.0.10",
     "@types/node": "10.17.27",
@@ -18,6 +21,7 @@
     "aws-sdk": "^2.986.0",
     "esbuild": "^0.12.26",
     "jest": "^26.4.2",
+    "jest-mock-extended": "^2.0.2-beta2",
     "ts-jest": "^26.2.0",
     "ts-node": "^9.0.0",
     "typescript": "~3.9.7"
